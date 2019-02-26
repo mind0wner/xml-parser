@@ -11,6 +11,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,8 @@ public class ParseDOM {
             Node train = trainsElements.item(i);
             NamedNodeMap attributes = train.getAttributes();
             trains.add(new Train(attributes.getNamedItem("from").getNodeValue(),attributes.getNamedItem("to").getNodeValue(),
-                    attributes.getNamedItem("date").getNodeValue(),attributes.getNamedItem("departure").getNodeValue()));
+                    LocalDate.parse(attributes.getNamedItem("date").getNodeValue().toString()),
+                    LocalTime.parse(attributes.getNamedItem("departure").getNodeValue())));
         }
         for (Train t : trains) {
             System.out.println(String.format("From: %s, to: %s, depDate: %s, depTime: %s", t.getFrom(), t.getTo(),

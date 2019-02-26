@@ -9,6 +9,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,14 +35,14 @@ public class ParseSAX {
     private static class XMLHandler extends DefaultHandler {
         private String from;
         private String to;
-        private String depDate;
-        private String depTime;
+        private LocalDate depDate;
+        private LocalTime depTime;
         private String lastElement;
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
             if ((from != null && !from.isEmpty()) && (to != null && !to.isEmpty())
-                    && (depDate != null && !depDate.isEmpty()) && (depTime != null && !depTime.isEmpty())) {
+                    &&(depDate != null) && (depTime != null)) {
                 trains.add(new Train(from, to, depDate, depTime));
                 from = null;
                 to = null;
@@ -61,17 +63,16 @@ public class ParseSAX {
                     to = info;
                 }
                 if (lastElement.equalsIgnoreCase("date")) {
-                    depDate = info;
+                    depDate = LocalDate.parse(info);
                 }
                 if (lastElement.equalsIgnoreCase("departure")) {
-                    depTime = info;
+                    depTime = LocalTime.parse(info);
                 }
             }
         }
 
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-            //There will be a logic of reaction at the beginning of the element
             lastElement = qName;
         }
     }

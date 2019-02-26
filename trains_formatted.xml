@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <trains>
-        <train from="Kiev" to="Donetsk" date="19.12.2013" departure="15:05"/>
-        <train from="L`viv" to="Prague" date="12.11.2014" departure="16:05"/>
+        <train from="Kiev" to="Donetsk" date="2013-11-19" departure="15:05"/>
+        <train from="L`viv" to="Prague" date="2013-01-13" departure="16:05"/>
 </trains>
