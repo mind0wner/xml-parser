@@ -7,14 +7,11 @@ import java.time.LocalTime;
 
 @XmlRootElement
 public class Train {
-    String from;
-    String to;
-    LocalDate depDate;
-    LocalTime depTime;
+    private String from;
+    private String to;
+    private LocalDate depDate;
+    private LocalTime depTime;
 
-    public Train() {
-
-    }
 
     public Train(String from, String to, LocalDate depDate, LocalTime depTime) {
         this.from = from;
@@ -37,5 +34,15 @@ public class Train {
     @XmlElement
     public LocalTime getDepTime() {
         return depTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Train{" +
+                "from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", depDate=" + depDate +
+                ", depTime=" + depTime +
+                '}';
     }
 }
